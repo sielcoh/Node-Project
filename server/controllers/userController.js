@@ -9,13 +9,15 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     try {
         const { userName, userEmail } = req.body;
-        const allUsers = await userService.getAllUsers();
+        const { data } = await userService.getAllUsers();
 
-        const findUser = allUsers.find(obj => obj.username == userName)
-        const findEmail = allUsers.find(obj => obj.email == userEmail)
+        const findUser = data.find(obj => obj.username == userName)
+        const findEmail = data.find(obj => obj.email == userEmail)
 
         if (findUser && findEmail) {
             res.json('ok');
+        }else{
+            res.json('user not founed')
         }
     } catch (error) {
         res.json('error');
