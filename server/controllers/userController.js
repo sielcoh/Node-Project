@@ -1,5 +1,7 @@
 const express = require('express');
+const jwt = require('jsonwebtoken')
 const userService = require('../services/userService');
+const jwtSecret = 'asdasd34rfsdzsd333';
 
 const router = express.Router();
 
@@ -8,6 +10,7 @@ const router = express.Router();
 // Check If USER EXISTS
 router.post('/', async (req, res) => {
     try {
+
         const { userName, userEmail } = req.body;
         const { data } = await userService.getAllUsers();
 
@@ -15,6 +18,8 @@ router.post('/', async (req, res) => {
         const findEmail = data.find(obj => obj.email == userEmail)
 
         if (findUser && findEmail) {
+            const token = jwt.sign({ name: userName, email: userEmail }, jwtSecret , {expiresIn: '30m'});
+            res.status(201).json({userName , token})
             res.json('ok');
         } else {
             res.status(442).json('user not found')

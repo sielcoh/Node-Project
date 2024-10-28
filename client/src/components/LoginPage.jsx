@@ -23,9 +23,6 @@ export default function LoginPage() {
         } catch {
             alert('Login fail');
         }
-
-
-
     }
 
     return (
