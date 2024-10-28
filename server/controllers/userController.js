@@ -16,11 +16,11 @@ router.post('/', async (req, res) => {
 
         if (findUser && findEmail) {
             res.json('ok');
-        }else{
-            res.json('user not founed')
+        } else {
+            res.status(442).json('user not found')
         }
     } catch (error) {
-        res.json('error');
+        res.json('not found');
     }
 });
 
