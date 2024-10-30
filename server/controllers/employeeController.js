@@ -1,31 +1,34 @@
 const express = require('express');
 const jwt = require('jsonwebtoken')
-const userService = require('../services/userService');
+const employeeService = require('../services/employeeService');
 const jwtSecret = 'asdasd34rfsdzsd333';
 
 
 const router = express.Router();
-// const secretKey = process.env.SECRET_KEY;
-// Entry point: http://localhost:4000/login
 
-// Check If USER EXISTS
-router.post('/', async (req, res) => {
+// Entry point: http://localhost:4000/employee
+
+router.post('/addNewEmployee', async (req, res) => {
+    const token = req.headers['authorization'];
+    console.log(token);
+
+    if (token) {
+        jwt.verify(token, jwtSecret, (err, decoded) => {
+            if (err) { return res.status(401).send('Invalid token'); } console.log('Decoded token:', decoded); res.status(200).send('Token is valid');
+        });
+    } else { res.status(400).send('Token not provided'); }
+
+
     try {
-
-        const { userName, userEmail } = req.body;
-        const { data } = await userService.getAllUsers();
-
-        const findUser = data.find(obj => obj.username == userName)
-        const findEmail = data.find(obj => obj.email == userEmail)
-
-        if (findUser && findEmail) {
-            const token = jwt.sign({ name: userName, email: userEmail }, jwtSecret , {expiresIn: '30m'});
-            res.status(201).json({userName , token})
+        const { firstName, lastName, yearOfStartingWork } = req.body;
+        const { data } = await employeeService.addNewlEmployee({ firstName, lastName, yearOfStartingWork })
+        if (data) {
+            res.status(201).json(data)
         } else {
-            res.status(442).json('user not found')
+            res.status(442).json('user not fadded')
         }
     } catch (error) {
-        res.json('not found');
+        res.json('error');
     }
 });
 

@@ -17,6 +17,7 @@ export default function LoginPage() {
         try {
             const { data } = await axios.post('http://localhost:4000/login', { userName, userEmail });
             console.log(data);
+            document.cookie = data.token
             setUser(userName);
             alert('Login successful');
             nav('/system');
