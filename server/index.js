@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 // const dotenv = require('dotenv');
-// const connectDB = require('./configs/db');
+const connectDB = require('./configs/db');
 
 const userRouter = require('./controllers/userController');
 const employeeRouter = require('./controllers/employeeController');
@@ -11,7 +11,7 @@ const app = express();
 const PORT = 4000;
 // dotenv.config();
 
-// connectDB();
+connectDB();
 
 // פתיחת השרת לכל דומיין
 app.use(cors());

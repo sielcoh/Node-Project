@@ -18,7 +18,7 @@ export default function NewEmployee() {
 
     try {
       const { data } = await axios.post('http://localhost:4000/employee/addNewEmployee', employee,
-        { headers: { Authorization: `Bearer ${document.cookie}` } })
+        { headers: { Authorization: `${document.cookie}` } })
       console.log(data);
       alert('employee added');
       // nav('/system');

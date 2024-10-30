@@ -6,8 +6,8 @@ const getAllEmployee = (filters) => {
 };
 // Create
 const addEmployee = (obj) => {
-    const movie = new Employee(obj);
-    return movie.save();
+    const Employee = new Employee(obj);
+    return Employee.save();
 };
 
 
