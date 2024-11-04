@@ -8,11 +8,35 @@ const router = express.Router();
 
 // Entry point: http://localhost:4000/employee
 
+
+router.get('/getAllEmployees', async (req, res) => {
+    // const token = req.headers.authorization
+
+    // if (!token) {
+    //     return res.status(401).json('No token provided');
+    // }
+
+    // jwt.verify(token, jwtSecret, (err, data) => {
+    //     if (err) {
+    //         return res.status(500).json('Failed to authenticate token');
+    //     }
+    // })
+    try {
+        const data = await employeeService.getAllEmployee()
+        if (data) {
+            res.status(201).json(data)
+        }
+    } catch (error) {
+        res.json('error');
+    }
+})
+
+
 router.post('/addNewEmployee', async (req, res) => {
     const token = req.headers.authorization
-    
+
     if (!token) {
-        res.status(401).json('No token provided');
+        return res.status(401).json('No token provided');
     }
 
     jwt.verify(token, jwtSecret, (err, data) => {
@@ -23,7 +47,9 @@ router.post('/addNewEmployee', async (req, res) => {
 
     try {
         const { firstName, lastName, yearOfStartingWork } = req.body;
-        const { data } = await employeeService.addNewlEmployee({ firstName, lastName, yearOfStartingWork })
+        const data = await employeeService.addNewlEmployee(firstName, lastName, yearOfStartingWork)
+        console.log(data);
+
         if (data) {
             res.status(201).json(data)
         } else {

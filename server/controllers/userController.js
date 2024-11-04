@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
         const findEmail = data.find(obj => obj.email == userEmail)
 
         if (findUser && findEmail) {
-            const token = jwt.sign({ name: userName, email: userEmail }, jwtSecret , {expiresIn: '30m'});
+            const token = jwt.sign({ name: userName, email: userEmail }, jwtSecret );
             res.status(201).json({userName , token})
         } else {
             res.status(442).json('user not found')
