@@ -12,7 +12,7 @@ export default function Employees() {
   useEffect(() => {
     axios.get('http://localhost:4000/employee/getAllEmployees').then(res => {
       setAllEmployees(res.data)
-      // console.log(res.data);
+      console.log(res.data);
 
     })
   }, [])
@@ -30,6 +30,7 @@ export default function Employees() {
             <tr>
               <th>ID</th>
               <th>Name</th>
+              <th>Department</th>
               <th>Start Work</th>
             </tr>
           </thead>
@@ -38,6 +39,7 @@ export default function Employees() {
               <tr key={employee._id}>
                 <td>{employee._id}</td>
                 <td style={{ cursor: 'pointer', textDecoration: 'underline', color: 'blue' }} onClick={() => nav(`/system/employees/${employee._id}`)}>{employee.firstName} {employee.lastName}</td>
+                <td>{employee.department}</td>
                 <td>{employee.yearOfStartingWork}</td>
               </tr>
             ))}

@@ -23,8 +23,8 @@ router.get('/getAllEmployees', async (req, res) => {
 
 router.post('/addNewEmployee', async (req, res) => {
     try {
-        const { firstName, lastName, yearOfStartingWork } = req.body;
-        const data = await employeeService.addNewlEmployee(firstName, lastName, yearOfStartingWork)
+        const { firstName, lastName, yearOfStartingWork, department } = req.body;
+        const data = await employeeService.addNewlEmployee(firstName, lastName, yearOfStartingWork,department)
         if (data) {
             res.status(201).json(data)
         } else {

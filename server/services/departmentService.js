@@ -4,8 +4,8 @@ const getAllDepartment = () => {
     return departmentRepo.getAllDepartment()
 };
 
-const addNewlDepartment = (name, manager) => {
-    return departmentRepo.addDepartment(name, manager)
+const addNewlDepartment = (name, manager, employees) => {
+    return departmentRepo.addDepartment(name, manager, employees)
 };
 
 const updateDepartment = (id, obj) => {

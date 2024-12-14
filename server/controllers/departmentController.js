@@ -21,8 +21,8 @@ router.get('/getAllDepartment', async (req, res) => {
 
 router.post('/addNewDepartment', async (req, res) => {
     try {
-        const {name , manager} = req.body;
-        const result = await dempartmentService.addNewlDepartment(name , manager)
+        const { name, manager, employees } = req.body;
+        const result = await dempartmentService.addNewlDepartment(name, manager, employees)
         res.status(201).json(result);
     } catch (error) {
         res.status(500).json(error.message);

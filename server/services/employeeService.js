@@ -4,8 +4,8 @@ const getAllEmployee = () => {
     return employeeRepo.getAllEmployee()
 };
 
-const addNewlEmployee = (firstName, lastName, yearOfStartingWork) => {
-    return employeeRepo.addEmployee(firstName, lastName, yearOfStartingWork)
+const addNewlEmployee = (firstName, lastName, yearOfStartingWork, department) => {
+    return employeeRepo.addEmployee(firstName, lastName, yearOfStartingWork, department)
 };
 
 const updateEmployee = (id, obj) => {

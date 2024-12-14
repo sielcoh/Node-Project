@@ -6,11 +6,13 @@ const getAllEmployee = () => {
 };
 
 // Create
-const addEmployee = (firstName, lastName, yearOfStartingWork) => {
+const addEmployee = (firstName, lastName, yearOfStartingWork,department) => {
     return Employee.create({
         firstName,
         lastName,
-        yearOfStartingWork
+        yearOfStartingWork,
+        department
+        
     })
 };
 

@@ -17,6 +17,15 @@ export default function Department() {
     })
   }, [])
 
+  const handleEditDepartment = (department) => {
+    console.log(department);
+  }
+
+  const handleEditEmployee = (employee) => {
+    console.log(employee);
+  }
+
+
   return (
     <div>
       <div className='text-center'>
@@ -26,13 +35,23 @@ export default function Department() {
       {allDepartment.length > 0 && <Table striped bordered hover className="table table-sm">
         <thead>
           <tr>
-            <th>Department Name - {allDepartment[0]?.name}  | Manager Name - {allDepartment[0].manager}</th>
+            <th>Department Name</th>
+            <th>Manager Name</th>
+            <th>Employees</th>
           </tr>
         </thead>
         <tbody>
-          {allDepartment.map((employee) => (
-            <tr key={employee._id}>
-              <td>{employee.name}</td>
+          {allDepartment.map((department) => (
+            <tr key={department._id}>
+              <td>{department.name}</td>
+              <td>
+                <a style={{ cursor: 'pointer', textDecoration: 'underline', color: 'blue' }} onClick={() => handleEditDepartment(department.id)}>{department.manager}</a>
+              </td>
+              {department.employees.map((employee, index) => {
+                <div key={index}>
+                  <a style={{ cursor: 'pointer', textDecoration: 'underline', color: 'blue' }} onClick={() => handleEditEmployee(employee)}>{employee}</a>
+                </div>
+              })}
             </tr>
           ))}
         </tbody>

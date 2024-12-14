@@ -6,10 +6,11 @@ const getAllDepartment = () => {
 };
 
 // Create
-const addDepartment = (name, manager) => {
+const addDepartment = (name, manager, employees) => {
     return Department.create({
         name,
-        manager
+        manager,
+        employees
     })
 };
 

@@ -22,6 +22,7 @@ export default function NewDepartment() {
     const department = {
       name,
       manager,
+      employees: []
     }
 
     if (name && manager) {

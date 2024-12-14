@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
-    firstName: {type: String, unique:true},
-    lastName: {type: String, unique:true},
-    yearOfStartingWork: {type: Number, unique:true},
+    firstName: { type: String, unique: true },
+    lastName: { type: String, unique: true },
+    yearOfStartingWork: { type: Number, unique: true },
+    department: { type: String, unique: true }
 },
     { versionKey: false }
 )
