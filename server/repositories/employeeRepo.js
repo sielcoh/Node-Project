@@ -4,6 +4,7 @@ const Employee = require('../models/employeeModel');
 const getAllEmployee = () => {
     return Employee.find({});
 };
+
 // Create
 const addEmployee = (firstName, lastName, yearOfStartingWork) => {
     return Employee.create({
@@ -13,26 +14,26 @@ const addEmployee = (firstName, lastName, yearOfStartingWork) => {
     })
 };
 
-
 // Update
 const updateEmployee = (id, obj) => {
     return Employee.findByIdAndUpdate(id, obj);
 };
 
-// // Get By ID
-// const getById = (id) => {
-//     return Movie.findById(id);
-// };
+// Get By ID
+const getById = (id) => {
+    return Employee.findById(id);
+};
 
 
-
-// // Delete
-// const deleteMovie = (id) => {
-//     return Movie.findByIdAndDelete(id);
-// };
+// Delete
+const deleteEmployee = (id) => {
+    return Employee.findByIdAndDelete(id);
+};
 
 module.exports = {
     getAllEmployee,
     addEmployee,
-    updateEmployee
+    updateEmployee,
+    deleteEmployee,
+    getById
 };

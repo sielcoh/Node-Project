@@ -1,28 +1,37 @@
 const Department = require('../models/departmentModel');
 
 // Get All
-const getAllEmployee = () => {
+const getAllDepartment = () => {
     return Department.find({});
 };
 
-
 // Create
-const addEmployee = (firstName, lastName, yearOfStartingWork) => {
-    return Employee.create({
-        firstName,
-        lastName,
-        yearOfStartingWork
+const addDepartment = (name, manager) => {
+    return Department.create({
+        name,
+        manager
     })
 };
 
 // Update
-const updateEmployee = (id, obj) => {
-    return Employee.findByIdAndUpdate(id, obj);
+const updateDepartment = (id, obj) => {
+    return Department.findByIdAndUpdate(id, obj);
 };
 
+// Get By ID
+const getById = (id) => {
+    return Department.findById(id);
+};
+
+// Delete
+const deleteDepartment = (id) => {
+    return Department.findByIdAndDelete(id);
+};
 
 module.exports = {
-    getAllEmployee,
-    addEmployee,
-    updateEmployee
+    getAllDepartment,
+    addDepartment,
+    updateDepartment,
+    getById,
+    deleteDepartment
 };

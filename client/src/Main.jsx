@@ -18,14 +18,14 @@ export default function Main() {
                 <Route index element={<LoginPage />} />
                 <Route path='/system' element={<Layout />}>
                     <Route index element={<Users />} />
-                    <Route path="/system/users"  element={<Users />} />
-                    <Route path="/system/shifts" element={<Shifts />} />
-                    <Route path='/system/employees' element={<Employees />} />
-                    <Route path='/system/editemployee' element={<EditEmployee />} />
-                    <Route path='/system/newemployee' element={<NewEmployee />} />
-                    <Route path='/system/department' element={<Department />} />
-                    <Route path='/system/editdepartment' element={<EditDepartment />} />
-                    <Route path='/system/newdepartment' element={<NewDepartment />} />
+                    <Route path="users"  element={<Users />} />
+                    <Route path="shifts" element={<Shifts />} />
+                    <Route path='employees' element={<Employees />} />
+                    <Route path='employees/:id' element={<EditEmployee />} />
+                    <Route path='newemployee' element={<NewEmployee />} />
+                    <Route path='department' element={<Department />} />
+                    <Route path='editdepartment' element={<EditDepartment />} />
+                    <Route path='newdepartment' element={<NewDepartment />} />
                 </Route>
             </Routes>
         </div>

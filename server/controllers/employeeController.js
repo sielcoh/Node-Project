@@ -10,17 +10,6 @@ const router = express.Router();
 
 
 router.get('/getAllEmployees', async (req, res) => {
-    // const token = req.headers.authorization
-
-    // if (!token) {
-    //     return res.status(401).json('No token provided');
-    // }
-
-    // jwt.verify(token, jwtSecret, (err, data) => {
-    //     if (err) {
-    //         return res.status(500).json('Failed to authenticate token');
-    //     }
-    // })
     try {
         const data = await employeeService.getAllEmployee()
         if (data) {
@@ -33,23 +22,9 @@ router.get('/getAllEmployees', async (req, res) => {
 
 
 router.post('/addNewEmployee', async (req, res) => {
-    const token = req.headers.authorization
-
-    if (!token) {
-        return res.status(401).json('No token provided');
-    }
-
-    jwt.verify(token, jwtSecret, (err, data) => {
-        if (err) {
-            return res.status(500).json('Failed to authenticate token');
-        }
-    })
-
     try {
         const { firstName, lastName, yearOfStartingWork } = req.body;
         const data = await employeeService.addNewlEmployee(firstName, lastName, yearOfStartingWork)
-        console.log(data);
-
         if (data) {
             res.status(201).json(data)
         } else {
@@ -59,6 +34,43 @@ router.post('/addNewEmployee', async (req, res) => {
         res.json('error');
     }
 });
+
+// Update a Employee
+router.put('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const obj = req.body;
+        const result = await employeeService.updateEmployee(id, obj);
+        res.json(result);
+    } catch (error) {
+        res.json(error);
+    }
+});
+
+
+// Delete a Employee
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await employeeService.deleteEmployee(id);
+        res.json(result);
+    } catch (error) {
+        res.json(error);
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // // Get a Movie By ID
@@ -95,15 +107,5 @@ router.post('/addNewEmployee', async (req, res) => {
 //     }
 // });
 
-// // Delete a Movie
-// router.delete('/:id', async (req, res) => {
-//     try {
-//         const { id } = req.params;
-//         const result = await movieService.deleteMovie(id);
-//         res.json(result);
-//     } catch (error) {
-//         res.json(error);
-//     }
-// });
 
 module.exports = router;
